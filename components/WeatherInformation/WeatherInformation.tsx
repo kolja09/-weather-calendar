@@ -1,6 +1,6 @@
 import React from "react";
 
-import WeatherForTheDay from "../WeatherForTheDay/WeatherForTheDay";
+import WeatherForTheDay from "../WeatherForTheDay";
 
 import { IWeatherInformation } from "./types";
 

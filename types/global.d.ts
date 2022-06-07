@@ -1,4 +1,4 @@
-declare interface WeatherProps{
+declare type WeatherProps = {
 	dt_txt: string | number,
   main: {
      pressure: number,

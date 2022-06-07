@@ -1,17 +1,16 @@
 import React, {useEffect, useState} from "react";
 import moment from "moment";
+import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 
-import WeatherInformation from "../WeatherInformation/WeatherInformation";
+import { fetchWeather } from "store/weather/weatherSlice";
+import WeatherInformation from "../WeatherInformation";
+
 import { Container, Date, DatesWrapper } from "./WeatherCalendar.styled";
-
-import {useDispatch, useSelector} from "react-redux";
-import { RootState } from "../../redux/store";
-import { loadWeather } from "../../redux/weather/action";
 
 const WeatherCalendar = () => {
 	const dispatch = useDispatch();
 
-	const data = useSelector((data: RootState) => data.weatherReducer.weatherItems);
+	const data = useSelector((data: RootStateOrAny) => data.weather.weather);
 
 	const [chosenDate, setChosenDate] = useState<string>("");
 	const [selectedDayData, setSelectedDayData] = useState<WeatherProps[]>([]);
@@ -25,7 +24,7 @@ const WeatherCalendar = () => {
 		.filter((item: string, i: number, ar: string[]) => ar.indexOf(item) === i);
 
 	useEffect(() => {
-		dispatch(loadWeather())
+		dispatch(fetchWeather())
 	}, [dispatch]);
 
 	const handleClick = (selectedDate: string) => {
